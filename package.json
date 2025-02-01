@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
-    "@tanstack/react-query": "^5.64.2",
+    "@tanstack/react-query": "^5.66.0",
     "axios": "^1.7.9",
     "b": "^2.0.1",
     "bootstrap": "^5.3.3",

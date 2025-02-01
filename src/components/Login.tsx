@@ -1,30 +1,41 @@
-import { useState, FormEvent } from "react";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import React, { useState, useEffect } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
+import { useAuth } from "../context/auth"
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleLogin = async (e: FormEvent) => {
+  const { user } = useAuth();
+
+  const navigate = useNavigate();
+  // useEffect (() => {
+  //   if (user) {
+  //   console.log(user)
+  //     navigate("/profile");
+  //   }
+  // },[user]);
+
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Basic validation
     if (!email || !password) {
       setError("Please provide both email and password.");
       return;
     }
 
-    setError(null);
+    // setError(null);
     setLoading(true);
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
       alert("Login successful!");
-      setEmail(""); // Clear email
-      setPassword(""); // Clear password
+      navigate("/profile");
     } catch (err: any) {
       const errorMessage =
         err.code === "auth/user-not-found"
@@ -38,48 +49,52 @@ const Login = () => {
     }
   };
 
-  const handleLogout = async () => {
-    setLoading(true);
-    try {
-      await signOut(auth);
-      alert("Logged out successfully!");
-    } catch (err: any) {
-      console.error("Logout error:", err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
-    <>
-      <form onSubmit={handleLogin}>
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit" disabled={loading}>
+    <div className="container mt-5">
+      <h2 className="text-center">Login</h2>
+      <form
+        onSubmit={handleLogin}
+        className="p-4 shadow rounded bg-light mx-auto"
+        style={{ maxWidth: "400px" }}
+      >
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            className="form-control"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            className="form-control"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          className="btn btn-dark w-100"
+          disabled={loading}
+        >
           {loading ? "Logging in..." : "Login"}
         </button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <div className="text-danger mt-3">{error}</div>}
       </form>
-      <button onClick={handleLogout} disabled={loading}>
-        {loading ? "Logging out..." : "Logout"}
-      </button>
-    </>
+    </div>
   );
 };
 

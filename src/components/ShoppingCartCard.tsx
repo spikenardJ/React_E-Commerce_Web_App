@@ -14,11 +14,15 @@ const ShoppingCartCard: React.FC<{ product: Product }> = ({ product }) => {
       <div id="product-image-div">
         <img id="product-image" src={product.image} alt={product.title} width="150" />
       </div>
+      <br />
       <p>${typeof product.price === "number" && !isNaN(product.price) ? product.price.toFixed(2) : "N/A"}</p>
       <h6>{product.title}</h6>
+      <br />
+      <p id="product-description">{product.description}</p>
+      <br />
       <p>Quantity: {product.quantity}</p>
       <div id="cart-btn-div">
-        <button id="remove-btn" onClick={() => handleRemove(product.id)}>Remove</button>
+        <button id="remove-btn" onClick={() => typeof product.id === 'number' && handleRemove(product.id)}>Remove</button>
       </div>
     </div>
   );

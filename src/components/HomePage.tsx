@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { useState } from "react";
 import { Container, Col, Row, Image } from "react-bootstrap";
 import NavBar from "./NavBar";
-import ProductCard from "./ProductCard";
+import ProductCard from "./Products/ProductCard";
 import shoppingImage from "../images/shopping-image.jpg";
 import { fetchCategories, fetchProducts } from "../api/api";
 import { Product } from "../types/types";
@@ -22,11 +22,11 @@ const HomePage = () => {
 
   const getFilteredProducts = () => {
     if (selectedCategory) {
-      return products?.data.filter(
+      return products?.filter(
         (product: Product) => product.category === selectedCategory
       );
     }
-    return products?.data;
+    return products;
   };
 
   const filteredProducts = getFilteredProducts();
@@ -41,8 +41,9 @@ const HomePage = () => {
           <Col xs={12} sm={12} md={12}>
             <div id="welcome-div">
               <h2>Welcome to the</h2>
-              <h1>E-Commerce App Home Page!</h1>
+              <h1>E-Commerce App!</h1>
               <div id="home-image-div">
+                <br />
                 <Image id="shopping-img" src={shoppingImage} alt="Welcome" />
               </div>
             </div>
@@ -57,7 +58,7 @@ const HomePage = () => {
                 style={{ color: "teal" }}
               >
                 <option value="">All Categories</option>
-                {categories?.data.map((category: string) => (
+                {categories?.map((category: string) => (
                   <option key={category} value={category}>
                     {category}
                   </option>
@@ -69,7 +70,7 @@ const HomePage = () => {
         <Row>
           {filteredProducts?.map((product: Product) => (
             <Col key={product.id} xs={12} sm={6} md={4} className="mb-4">
-              <ProductCard product={product} />
+              <ProductCard key={product.id} product={product} />
             </Col>
           ))}
         </Row>

@@ -29,7 +29,7 @@ interface CartState {
         sessionStorage.setItem('cart', JSON.stringify(state.products));
       },
       removeProduct: (state, action: PayloadAction<number>) => {
-        state.products = state.products.filter((product) => product.id !== action.payload);
+        state.products = state.products.filter((product) => Number(product.id) !== action.payload);
         sessionStorage.setItem('cart', JSON.stringify(state.products));
       },
       clearCart: (state) => {

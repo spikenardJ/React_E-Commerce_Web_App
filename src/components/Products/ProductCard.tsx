@@ -1,5 +1,5 @@
-import { Product } from "../types/types";
-import { addProduct } from "../store/cartSlice";
+import { Product } from "../../types/types";
+import { addProduct } from "../../store/cartSlice";
 import { useDispatch } from "react-redux";
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
@@ -22,6 +22,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           Add to Cart
         </button>
       </div>
+      <p id="product-description"><small>{product.description}</small></p>
     </div>
   );
 };
