@@ -29,8 +29,17 @@ Featuring:
     * An error page to gently handle it when the user tries to go to a nonexistent page.
 * Beautiful CSS and Bootstrap CSS:
     * Beautiful appearance of all pages, nav elements, and buttons holding pages similar to keep a particular theme to be visually pleasing to the user. 
-How to use: 
 
-1. Go to https://github.com/spikenardJ/React_E-Commerce_Web_App.git  and download the raw file in the upper right corner of the code. After downloading, go to your V.S. Code and upload it there. Once you have it on V.S. Code, type: npm run dev in the terminal to make sure it is running. When it is running properly download the link: http://localhost:5173/ and paste it in your browser. (Or link provided.)
+
+Installation and Setup ⚙️
+
+Follow these steps to set up the project locally:
+
+git clone https://github.com/spikenardJ/React_E-Commerce_Web_App.git 
+cd e-commerce-app
+npm install
+npm run dev
+Open http://localhost:5173/ (Or link provided) in your browser to view the app.
+Sometimes the port may be different depending on your setup so be sure to use the right port
 
 At that point you can enjoy the React E-Commerce Web Application and all of it’s unique features as well as edit the code if you like. You may then show your suggestions as comments on here!   Thank you for checking out The React E-Commerce Web Application!💲
