@@ -55,7 +55,7 @@ const ShoppingCart: React.FC = () => {
     return (
         <Container className="d-flex justify-content-center flex-column">
             <Row>
-                <Col>
+                <Col>å
                     <h1>Shopping Cart</h1>
                 </Col>
             </Row>

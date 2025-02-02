@@ -13,12 +13,12 @@ const Login = () => {
   const { user } = useAuth();
 
   const navigate = useNavigate();
-  // useEffect (() => {
-  //   if (user) {
-  //   console.log(user)
-  //     navigate("/profile");
-  //   }
-  // },[user]);
+  useEffect (() => {
+    if (user) {
+    console.log(user)
+      navigate("/profile");
+    }
+  },[user]);
 
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {

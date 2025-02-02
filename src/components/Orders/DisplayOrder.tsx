@@ -15,6 +15,9 @@ const OrderItem: React.FC<{ product: Product }> = ({ product }) => {
         borderRadius: "5px",
       }}
     >
+      <br />
+      <img style={{ width: "90px", border: "1px solid black", borderRadius: "8px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)"}} src={product.image} alt={product.title} />
+      <br /><br />
       <p><strong>Title:</strong> {product.title}</p>
       <p><strong>Price:</strong> ${product.price.toFixed(2)}</p>
       <p><strong>Quantity:</strong> {product.quantity}</p>
