@@ -16,15 +16,8 @@ body {
     justify-content: center;
 }
 
-#clear-cart-div {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 60px;
-}
-
 #cart-card {
-    height: 50rem;
+    height: 55rem;
     width: auto;
     margin: 10px;
 }
@@ -39,13 +32,23 @@ body {
   }
 
 #clear-cart-btn {
-    background-color: azure;
-    color: #008080;
-    font-size: 14px;
+    width: 10rem;
+    margin: 10px;
+    background-color: grey;
+    border-radius: 10px;
     margin-top: 50px;
-    border: 1px solid black;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    border:2px solid #008080;
+    box-shadow: 0 0 4px black;
+    transition: box-shadow 0.3s ease;
+}
+
+#clear-cart-btn:hover {
+    background-color: red;
+    color: black;
 }
 
 #check-out-btn {
@@ -120,7 +123,7 @@ body {
     border: 1px solid black;
     color: white;
     line-height: 10px;
-    margin-top: 30px;
+    margin-top: 10px;
     font-size: 14px;
     position: relative;
     padding: 8px 16px;
@@ -212,11 +215,10 @@ body {
     color: black;
 }
 
-/* Style for the product grid */
 .product-grid, #cart-item {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 16px; /* Space between items */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
     margin: 20px;
     padding: 0;
 }
@@ -234,7 +236,7 @@ body {
     margin: 10px;
     background-color: azure;
     border-radius: 10px;
-    margin-top: 50px;
+    margin-top: 40px;
     padding: 16px;
     text-align: center;
     border:2px solid #008080;
@@ -243,7 +245,7 @@ body {
 }
 
 #order-card {
-    width: 18rem;
+    width: 19rem;
     height: 25rem;
     margin: 10px;
     padding-top: 60px;

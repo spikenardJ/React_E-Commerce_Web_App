@@ -1,7 +1,6 @@
 import { useQuery } from "react-query";
 import { useState } from "react";
 import { Container, Col, Row, Image } from "react-bootstrap";
-import NavBar from "./NavBar";
 import ProductCard from "./Products/ProductCard";
 import shoppingImage from "../images/shopping-image.jpg";
 import { fetchCategories, fetchProducts } from "../api/api";
@@ -34,9 +33,6 @@ const HomePage = () => {
   return (
     <>
       <Container className="d-flex justify-content-center flex-column">
-        <Row>
-          <NavBar />
-        </Row>
         <Row className="justify-content-md-center">
           <Col xs={12} sm={12} md={12}>
             <div id="welcome-div">

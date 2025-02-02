@@ -15,7 +15,7 @@ export const fetchProducts = async (): Promise<Product[]> => {
 
 export const fetchCategories = async (): Promise<string[]> => {
     const products = await fetchProducts();
-    const categories = [...new Set(products.map((product) => product.category))]; // Remove duplicates
+    const categories = [...new Set(products.map((product) => product.category))];
     return categories;
 };
 

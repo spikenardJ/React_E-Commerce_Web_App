@@ -29,7 +29,7 @@ export type CartItem = Product & { quantity: number };
 export type Order = {
     id?: string;
     userId: string;
-    products: CartItem[];
+    products: Product[];
     total: number;
     createdAt: Date;
     updatedAt: Date;

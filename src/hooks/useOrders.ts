@@ -14,11 +14,11 @@ export const useCreateOrder = (userId: string) => {
         return await createOrder(order);
     }, {
         onSuccess: () => {
-            console.log("✅ Order successfully created!");
+            console.log("Order successfully created!");
             queryClient.invalidateQueries(["orders", userId]); 
         },
         onError: (error) => {
-            console.error("❌ Order creation error:", error);
+            console.error("Order creation error:", error);
         }
     });
 };

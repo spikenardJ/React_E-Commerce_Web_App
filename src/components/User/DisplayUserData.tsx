@@ -81,7 +81,7 @@ const DisplayUserData = () => {
     <div>
       <h2>Users List</h2>
       {loading && <p>Loading...</p>}
-      {message && <p style={{ color: 'green' }}>{message}</p>}
+      {message && <p style={{ color: "teal" }}>{message}</p>}
       {users.map((user) => (
         <div
           key={user.id}

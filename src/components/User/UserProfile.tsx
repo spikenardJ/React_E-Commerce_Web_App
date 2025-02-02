@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getUser, updateUser, deleteUser } from "./userService";
 import { useAuth } from "../../context/auth";
-import NavBar from "../NavBar"; // Ensure this is correctly imported
 
 const UserProfile: React.FC = () => {
   const { user } = useAuth();
@@ -56,7 +55,6 @@ const UserProfile: React.FC = () => {
 
   return (
     <>
-      <NavBar /> {/* Added Navigation Bar */}
       <div className="container mt-4">
         {!editing ? (
           <>

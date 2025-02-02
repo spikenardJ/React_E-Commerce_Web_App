@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 const ShoppingCartCard: React.FC<{ product: Product }> = ({ product }) => {
   const dispatch = useDispatch();
 
-  const handleRemove = (id: number) => {
+  const handleRemove = (id: string) => {
+    console.log("Removing product with ID:", id);  // Debugging log
     dispatch(removeProduct(id));
   };
 
@@ -22,7 +23,9 @@ const ShoppingCartCard: React.FC<{ product: Product }> = ({ product }) => {
       <br />
       <p>Quantity: {product.quantity}</p>
       <div id="cart-btn-div">
-        <button id="remove-btn" onClick={() => typeof product.id === 'number' && handleRemove(product.id)}>Remove</button>
+      <button id="remove-btn" onClick={() => handleRemove(String(product.id))}>
+        Remove
+      </button>
       </div>
     </div>
   );

@@ -9,14 +9,14 @@ const ordersRef = collection(db, COLLECTION_NAME);
   
 export const createOrder = async (order: Order) => {
     try {
-        console.log("Attempting to create order:", order); // 🔍 Debugging Log
+        console.log("Attempting to create order:", order);
 
         const docRef = await addDoc(collection(db, "orders"), order);
 
-        console.log("Order created with ID:", docRef.id); // ✅ Success Log
+        console.log("Order created with ID:", docRef.id);
         return docRef.id;
     } catch (error) {
-        console.error("Error creating order:", error); // ❌ Error Log
+        console.error("Error creating order:", error);
         throw error;
     }
 };
@@ -47,30 +47,8 @@ export const deleteOrder = async (orderId: string) => {
     await deleteDoc(doc(db, "orders", orderId));
 };
   
-// export const getOrder = async (orderId: string) => {
-//     const docRef = doc(ordersRef, orderId);
-//     const docSnap = await getDoc(docRef);
-//     return { id: docSnap.id, ...docSnap.data() } as Order;
-// };
-
 export const getOrder = async (orderId: string) => {
-    const docRef = doc(db, "orders", orderId);
+    const docRef = doc(ordersRef, orderId);
     const docSnap = await getDoc(docRef);
-
-    if (!docSnap.exists()) {
-        throw new Error("Order not found");
-    }
-
-    const data = docSnap.data();
-
-    return {
-        id: docSnap.id,
-        ...data,
-        createdAt: data.createdAt instanceof Timestamp ? data.createdAt.toDate() : data.createdAt,
-        updatedAt: data.updatedAt instanceof Timestamp ? data.updatedAt.toDate() : data.updatedAt,
-        products: data.products.map((product: any) => ({
-            ...product,
-            quantity: product.quantity ?? 1, // Ensure quantity is set
-        })),
-    } as Order;
+    return { id: docSnap.id, ...docSnap.data() } as Order;
 };

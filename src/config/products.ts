@@ -1,5 +1,5 @@
 import { db } from "../config/firebaseConfig";
-import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc, getDoc, serverTimestamp } from "firebase/firestore";
+import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
 import { Product, CreateProductInput, UpdateProductInput,} from "../types/types";
 
 const COLLECTION_NAME = "products";
@@ -36,12 +36,11 @@ export const createProduct = async (
         updatedAt: serverTimestamp(),
     });
 
-    // Return the product with placeholders for timestamps (Firestore will handle them)
     return {
         id: docRef.id,
         ...product,
-        createdAt: new Date(), // Placeholder
-        updatedAt: new Date(), // Placeholder
+        createdAt: new Date(), 
+        updatedAt: new Date(), 
     };
 };
 

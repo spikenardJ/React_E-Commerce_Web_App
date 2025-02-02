@@ -1,70 +1,105 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { useGetOrder } from "../../hooks/useOrders";
+import { useParams, useNavigate } from "react-router-dom";
+import { useGetOrder, useDeleteOrder } from "../../hooks/useOrders";
 import { Product } from "../../types/types";
-import NavBar from "../NavBar"; // Ensure the NavBar is imported
+import { useAuth } from "../../context/auth";
 
 // Component to display individual product details in the order
 const OrderItem: React.FC<{ product: Product }> = ({ product }) => {
   return (
-    <div style={{ borderBottom: "1px solid #ddd", paddingBottom: "10px", marginBottom: "10px" }}>
-      <h5>{product.title}</h5>
-      <p>Price: ${product.price.toFixed(2)}</p>
-      <p>Quantity: {product.quantity}</p>
+    <div
+      style={{
+        border: "2px solid black",
+        margin: "30px",
+        padding: "10px",
+        borderRadius: "5px",
+      }}
+    >
+      <p><strong>Title:</strong> {product.title}</p>
+      <p><strong>Price:</strong> ${product.price.toFixed(2)}</p>
+      <p><strong>Quantity:</strong> {product.quantity}</p>
     </div>
   );
 };
 
 const DisplayOrder: React.FC = () => {
   const { orderId } = useParams<{ orderId: string }>();
-  if (!orderId) {
-    return <p>Order not found.</p>; // Handle case when `orderId` is undefined
-  }
-
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const { data: order } = useGetOrder(orderId!);
+  const { mutate: deleteOrder } = useDeleteOrder(user?.uid ?? ""); 
+
+  if (!orderId) {
+    return <p>Order not found.</p>;
+  }
 
   if (!order) {
-    return <p>Loading...</p>; // Handle the loading state
+    return <p>Loading...</p>;
   }
+
+  const handleDelete = () => {
+    if (order.id) {
+      if (window.confirm("Are you sure you want to delete this order?")) {
+        deleteOrder(order.id);  // Calls the delete function
+        alert("Order deleted successfully.");
+        navigate("/orders");  // Redirect to the orders page after deletion
+      }
+    } else {
+      console.error("Order ID is missing");
+    }
+  };
 
   return (
     <>
-      <NavBar /> {/* Added Navigation Bar */}
-      <div className="container mt-4">
+      <div style={{ padding: "20px" }}>
         <div
           style={{
-            border: "1px solid black",
+            textAlign: "left",
+            border: "2px solid black",
             borderRadius: "10px",
             boxShadow: "0 0 4px black",
-            paddingTop: "30px",
-            paddingBottom: "40px",
+            padding: "30px 40px",
             backgroundColor: "azure",
           }}
         >
-          <div style={{ marginBottom: "30px", borderRadius: "10px", padding: "10px", backgroundColor: "teal" }} className="card-header text-center text-white mx-3">
+          <div
+            style={{
+              marginBottom: "30px",
+              borderRadius: "10px",
+              padding: "10px",
+              backgroundColor: "teal",
+              color: "white",
+            }}
+            className="card-header text-center mx-3"
+          >
             <h4 className="mb-0">Order Details</h4>
           </div>
 
-          <div className="mb-3" style={{ marginLeft: "15%" }}>
+          <div style={{ textAlign: "center" }}>
             <p><strong>Order ID:</strong> {order.id}</p>
             <p><strong>Total:</strong> ${order.total.toFixed(2)}</p>
-            <p><strong>Created At:</strong> {order.createdAt ? new Date(order.createdAt).toLocaleString() : "N/A"}</p>
+            <p>
+            <strong>Created At:</strong>{" "}
+            {order.createdAt
+                ? (order.createdAt as any).seconds
+                    ? new Date((order.createdAt as any).seconds * 1000).toLocaleString() // Firestore Timestamp
+                    : new Date(order.createdAt).toLocaleString() // JavaScript Date
+                : "N/A"}
+            </p>
           </div>
-
-          <div style={{ marginLeft: "15%" }}>
-            <h5>Products:</h5>
+          <h5>Products:</h5>
+          <div style={{ textAlign: "center" }}>
             {order.products.map((product: Product) => (
               <OrderItem key={product.id} product={product} />
             ))}
           </div>
 
-          <div className="text-center mx-3">
-            {/* Example of Edit/Delete buttons (add functionality as needed) */}
-            <button className="btn btn-outline-dark" onClick={() => alert("Edit Order functionality goes here.")}>
-              Edit Order
-            </button>
-            <br /><br />
-            <button className="btn btn-danger" onClick={() => alert("Delete Order functionality goes here.")}>
+          <div className="text-center mx-3" style={{ marginTop: "20px" }}>
+            <button
+              className="btn"
+              style={{ backgroundColor: "crimson", color: "white", marginRight: "10px" }}
+              onClick={handleDelete} 
+            >
               Delete Order
             </button>
           </div>

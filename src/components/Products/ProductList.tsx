@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useProducts } from "../../hooks/useProducts";
 import { Product } from "../../types/types";
 import ProductListCard from "./ProductListCard";
-import NavBar from "../NavBar";
 
 const ProductList: React.FC = () => {
     const { products, isLoading } = useProducts();
@@ -15,7 +14,6 @@ const ProductList: React.FC = () => {
 
     return (
         <div>
-            <NavBar />
             <h1>Products List</h1>
             <div className="text-center mt-5 mb-3">
                 <button id="new-product-btn" onClick={() => navigate("/products/new")}>Add New Product</button>

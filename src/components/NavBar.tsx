@@ -72,7 +72,7 @@ const NavBar: React.FC = () => {
         </NavLink>
 
         {user && (
-          <Button id="profile-btn" variant="light" style={{ paddingBottom: "8px" }} onClick={handleProfileClick}>
+          <Button id="profile-btn" variant="light" style={{ paddingBottom: "6px" }} onClick={handleProfileClick}>
             <strong>Profile</strong>
           </Button>
         )}

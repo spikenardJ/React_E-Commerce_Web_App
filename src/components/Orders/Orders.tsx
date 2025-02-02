@@ -1,9 +1,7 @@
 import React from "react";
 import { useAuth } from "../../context/auth";
 import { useOrders } from "../../hooks/useOrders";
-import { Order } from "../../types/types";
 import OrderCard from "./OrderCard";
-import NavBar from "../NavBar";
 
 const Orders: React.FC = () => {
     const { user, loading } = useAuth();
@@ -14,7 +12,6 @@ const Orders: React.FC = () => {
 
     return (
         <div>
-            <NavBar />
             <h1>Your Orders</h1>
             {orders?.length === 0 ? (
                 <p>No orders yet.</p>

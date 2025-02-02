@@ -28,10 +28,17 @@ interface CartState {
         }
         sessionStorage.setItem('cart', JSON.stringify(state.products));
       },
-      removeProduct: (state, action: PayloadAction<number>) => {
-        state.products = state.products.filter((product) => Number(product.id) !== action.payload);
+
+      removeProduct: (state, action: PayloadAction<string>) => {
+        console.log("Dispatched removeProduct with ID:", action.payload);  // Debugging log
+      
+        state.products = state.products.filter((product) => String(product.id) !== action.payload);
+      
+        console.log("Updated products array:", state.products); // Check if state is updating
+      
         sessionStorage.setItem('cart', JSON.stringify(state.products));
       },
+
       clearCart: (state) => {
         state.products = [];
         sessionStorage.removeItem('cart');

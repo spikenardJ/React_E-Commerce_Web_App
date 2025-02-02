@@ -14,10 +14,11 @@ import Login from "./components/Login";
 import UserProfile from "./components/User/UserProfile";
 import ProfileForm from "./components/User/ProfileForm";
 import Orders from "./components/Orders/Orders.tsx";
-import DisplayOrder from "./components/Orders/Orders.tsx"
+import DisplayOrder from "./components/Orders/DisplayOrder.tsx";
 import ProductList from "./components/Products/ProductList.tsx";
 import AddProduct from "./components/Products/AddProduct.tsx";
 import EditProduct from "./components/Products/EditProduct.tsx";
+import NavBar from "./components/NavBar.tsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
@@ -39,6 +40,7 @@ const App = ()=> {
         <Provider store={store}>
           <BrowserRouter>
             <AuthProvider>
+              <NavBar />
               <div>
                 {user ? (
                   <div>
