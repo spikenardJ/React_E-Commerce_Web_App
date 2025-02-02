@@ -48,51 +48,52 @@ const NavBar: React.FC = () => {
 
   return (
     <Navbar collapseOnSelect bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand style={{ color: "teal" }} href="/">
-          <small>
-          💲 E-Commerce App 💲
-          </small>
-        </Navbar.Brand>
+  <Container>
+    <Navbar.Brand style={{ color: "teal" }} href="/">
+      <small>💲 E-Commerce App 💲</small>
+    </Navbar.Brand>
 
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="nav-bar m-4 navbar-expand-lg navbar-light bg-light">
-            <NavLink to="/" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
-              <strong>Home Page</strong>
-            </NavLink>
-            <NavLink to="/shopping-cart" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
-              <strong>View Cart</strong>
-            </NavLink>
-            <NavLink to="/orders" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
-              <strong>Orders</strong>
-            </NavLink>
-            <NavLink to="/products" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
-              <strong>Products</strong>
-            </NavLink>
+    {/* Add this line to enable the hamburger menu */}
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-            {user && (
-              <Button id="profile-btn" variant="light" style={{ paddingBottom: "8px" }} onClick={handleProfileClick}>
-              <strong>Profile</strong>
-              </Button>
-              )}
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="nav-bar m-4 navbar-expand-lg navbar-light bg-light">
+        <NavLink to="/" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+          <strong>Home Page</strong>
+        </NavLink>
+        <NavLink to="/shopping-cart" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+          <strong>View Cart</strong>
+        </NavLink>
+        <NavLink to="/orders" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+          <strong>Orders</strong>
+        </NavLink>
+        <NavLink to="/products" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+          <strong>Products</strong>
+        </NavLink>
 
-            {user ? (
-                <Button variant="light" style={{ color: "teal" }} onClick={handleLogout}>
-                  Logout
-                </Button>
-            ) : (
-              <NavLink style={{ marginLeft: "10px" }} to="/login">
-                <Button variant="light" style={{ color: "teal" }} >Login</Button>
-              </NavLink>
-            )}
+        {user && (
+          <Button id="profile-btn" variant="light" style={{ paddingBottom: "8px" }} onClick={handleProfileClick}>
+            <strong>Profile</strong>
+          </Button>
+        )}
 
-            <NavLink className="cart-icon" style={{ color: "grey" }} to="/shopping-cart">
-              Cart {totalCartItems > 0 && <span className="cart-count">{totalCartItems}</span>}
-            </NavLink>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+        {user ? (
+          <Button variant="light" style={{ color: "teal" }} onClick={handleLogout}>
+            Logout
+          </Button>
+        ) : (
+          <NavLink style={{ marginLeft: "10px" }} to="/login">
+            <Button variant="light" style={{ color: "teal" }}>Login</Button>
+          </NavLink>
+        )}
+
+        <NavLink className="cart-icon" style={{ color: "grey" }} to="/shopping-cart">
+          Cart {totalCartItems > 0 && <span className="cart-count">{totalCartItems}</span>}
+        </NavLink>
+      </Nav>
+    </Navbar.Collapse>
+  </Container>
+</Navbar>
   );
 };
 
