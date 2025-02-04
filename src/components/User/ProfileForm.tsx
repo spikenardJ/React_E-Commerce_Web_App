@@ -45,16 +45,15 @@ const ProfileForm: React.FC<UserFormProps> = ({ userId, buttonMessage = "Save" }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Form submitted");
     setLoading(true);
     setError(null);
-
+  
     try {
       if (userId) {
         await updateUser(userId, data);
-        console.log("User updated successfully!");
       } else {
         await createUser(userId || "", { ...data, createdAt: new Date().toISOString() });
-        console.log("User created successfully!");
       }
       alert("Profile saved successfully!");
       navigate("/profile");
@@ -63,6 +62,7 @@ const ProfileForm: React.FC<UserFormProps> = ({ userId, buttonMessage = "Save" }
       setError(err.message || "An error occurred while saving the profile.");
     } finally {
       setLoading(false);
+      // console.log("Loading state is now:", loading);
     }
   };
 
@@ -77,8 +77,9 @@ const ProfileForm: React.FC<UserFormProps> = ({ userId, buttonMessage = "Save" }
           <form id="profile-form" onSubmit={handleSubmit}>
             <div style={{ marginLeft: "15%"}}>
               <div className="mb-3">
-                <label className="form-label">Name</label>
+                <label htmlFor="name" className="form-label">Name</label>
                 <input
+                  id="name"
                   style={{width: "80%"}}
                   type="text"
                   className="form-control"
@@ -88,8 +89,9 @@ const ProfileForm: React.FC<UserFormProps> = ({ userId, buttonMessage = "Save" }
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Email</label>
+                <label htmlFor="email" className="form-label">Email</label>
                 <input
+                  id="email"
                   style={{width: "80%"}}
                   type="email"
                   className="form-control"
@@ -99,8 +101,9 @@ const ProfileForm: React.FC<UserFormProps> = ({ userId, buttonMessage = "Save" }
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Phone</label>
+                <label htmlFor="phone" className="form-label">Phone</label>
                 <input
+                  id="phone"
                   style={{width: "80%"}}
                   type="tel"
                   className="form-control"
@@ -110,8 +113,9 @@ const ProfileForm: React.FC<UserFormProps> = ({ userId, buttonMessage = "Save" }
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Age</label>
+                <label htmlFor="age" className="form-label">Age</label>
                 <input
+                  id="age"
                   style={{width: "80%"}}
                   type="number"
                   className="form-control"

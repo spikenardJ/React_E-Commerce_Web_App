@@ -3,7 +3,20 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../config/firebaseConfig";
 // import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-const RegisterUser = () => {
+interface RegisterFormProps {
+  submitFunction?: (data: any) => void;
+  prefillData?: {
+    userId: string;
+    email: string;
+    password: string;
+    displayName: string;
+    isLoggedIn: boolean;
+  };
+}
+
+// submitFunction
+// const RegisterUser: React.FC<RegisterFormProps> = ({ submitFunction, prefillData}) => {
+const RegisterUser: React.FC<RegisterFormProps> = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");

@@ -7,6 +7,7 @@ import { useAuth } from "../context/auth";
 import { useCreateOrder } from "../hooks/useOrders";
 import ShoppingCartCard from "./ShoppingCartCard";
 import confetti from "canvas-confetti";
+import React from "react";
 
 const ShoppingCart: React.FC = () => {
     const dispatch = useDispatch();

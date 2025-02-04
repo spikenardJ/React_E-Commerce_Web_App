@@ -1,3 +1,4 @@
+import React from "react";
 import { Product } from "../types/types";
 import { removeProduct } from "../store/cartSlice";
 import { useDispatch } from "react-redux";

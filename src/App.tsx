@@ -13,12 +13,12 @@ import RegisterUser from "./components/User/RegisterUser";
 import Login from "./components/Login";
 import UserProfile from "./components/User/UserProfile";
 import ProfileForm from "./components/User/ProfileForm";
-import Orders from "./components/Orders/Orders.tsx";
-import DisplayOrder from "./components/Orders/DisplayOrder.tsx";
-import ProductList from "./components/Products/ProductList.tsx";
-import AddProduct from "./components/Products/AddProduct.tsx";
-import EditProduct from "./components/Products/EditProduct.tsx";
-import NavBar from "./components/NavBar.tsx";
+import Orders from "./components/Orders/Orders";
+import DisplayOrder from "./components/Orders/DisplayOrder";
+import ProductList from "./components/Products/ProductList";
+import AddProduct from "./components/Products/AddProduct";
+import EditProduct from "./components/Products/EditProduct";
+import NavBar from "./components/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
@@ -50,7 +50,8 @@ const App = ()=> {
                   </div>
                 ) : (
                   <>
-                    <RegisterUser />
+                    <RegisterUser submitFunction={(data) => console.log("Registered:", data)} />
+
 
                   </>
                 )}
