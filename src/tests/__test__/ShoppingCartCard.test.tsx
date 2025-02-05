@@ -9,12 +9,12 @@ import { Product } from "../../types/types";
 import { useDispatch } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 
+const mockDispatch = jest.fn(); // ✅ Mock Dispatch Function
+
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
-  useDispatch: () => jest.fn(), // ✅ Mock Redux Dispatch
+  useDispatch: () => mockDispatch,  // ✅ Use the mock dispatch
 }));
-
-
 
 jest.mock("../../store/cartSlice", () => ({
   removeProduct: jest.fn(),
@@ -81,10 +81,10 @@ describe("ShoppingCartCard Component", () => {
         <ShoppingCartCard product={mockProduct} />
       </Provider>
     );
-
+  
     const removeButton = screen.getByText(/Remove/i);
     fireEvent.click(removeButton);
-
-    expect(removeProduct).toHaveBeenCalledWith("1");
+  
+    expect(mockDispatch).toHaveBeenCalledWith(removeProduct("1")); // ✅ Check mockDispatch instead of removeProduct directly
   });
 });
