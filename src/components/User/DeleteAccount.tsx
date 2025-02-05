@@ -4,7 +4,7 @@ import { deleteUser } from "./userService";
 
 interface DeleteAccountProps {
   userId: string; // The ID of the user to delete
-  onAccountDeleted: () => void; // Callback to handle what happens after deletion (e.g., redirect)
+  onAccountDeleted: () => void; // Callback to handle what happens after deletion
 }
 
 const DeleteAccount: React.FC<DeleteAccountProps> = ({ userId, onAccountDeleted }) => {
@@ -17,7 +17,7 @@ const DeleteAccount: React.FC<DeleteAccountProps> = ({ userId, onAccountDeleted 
       try {
         await deleteUser(userId);
         alert("Your account has been deleted.");
-        onAccountDeleted(); // Trigger callback (e.g., redirect to login/homepage)
+        onAccountDeleted(); // Trigger callback
       } catch (error) {
         console.error("Error deleting account:", error);
         alert("Failed to delete your account. Please try again later.");

@@ -62,7 +62,6 @@ const ProfileForm: React.FC<UserFormProps> = ({ userId, buttonMessage = "Save" }
       setError(err.message || "An error occurred while saving the profile.");
     } finally {
       setLoading(false);
-      // console.log("Loading state is now:", loading);
     }
   };
 

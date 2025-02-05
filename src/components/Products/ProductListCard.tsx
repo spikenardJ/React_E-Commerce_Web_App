@@ -6,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const {  isLoading, deleteProduct, isDeleting } = useProducts();
-  const dispatch = useDispatch(); // Use `useDispatch` inside the component
+  const dispatch = useDispatch(); // `useDispatch` inside the component
   const navigate = useNavigate();
 
   const handleAddProduct = (product: Product) => {
-    dispatch(addProduct({ ...product, quantity: 1 })); // Dispatch the action correctly
+    dispatch(addProduct({ ...product, quantity: 1 }));
     alert("Item added to cart successfully! 🎉");
   };
 

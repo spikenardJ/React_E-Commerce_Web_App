@@ -1,3 +1,4 @@
+
 import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import ProfileForm from "../../components/User/ProfileForm";
@@ -8,16 +9,17 @@ import { removeProduct } from "../../store/cartSlice";
 import { Product } from "../../types/types";
 import { useDispatch } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
+import configureStore from "redux-mock-store";
 
-const mockDispatch = jest.fn(); // ✅ Mock Dispatch Function
+const mockDispatch = jest.fn();
 
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
-  useDispatch: () => mockDispatch,  // ✅ Use the mock dispatch
+  useDispatch: () => mockDispatch,
 }));
 
 jest.mock("../../store/cartSlice", () => ({
-  removeProduct: jest.fn(),
+  removeProduct: jest.fn((id) => ({ type: "cart/removeProduct", payload: id })), 
 }));
 
 describe("ProfileForm Component", () => {
@@ -38,10 +40,10 @@ describe("ProfileForm Component", () => {
   it("submits form successfully", () => {
     render(<MemoryRouter><ProfileForm /></MemoryRouter>);
 
-    fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Jon Smith' } });
-    fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'jon@smith.com' } });
-    fireEvent.change(screen.getByLabelText(/Phone/i), { target: { value: '111-111-1111' } });
-    fireEvent.change(screen.getByLabelText(/Age/i), { target: { value: '26' } });
+    fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: "Jon Smith" } });
+    fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: "jon@smith.com" } });
+    fireEvent.change(screen.getByLabelText(/Phone/i), { target: { value: "111-111-1111" } });
+    fireEvent.change(screen.getByLabelText(/Age/i), { target: { value: "26" } });
   
     
     const submitButton = screen.getByText(/Save/i);
@@ -61,9 +63,9 @@ describe("ShoppingCartCard Component", () => {
         quantity: 2,
         description: "A great product",
         image: "test.jpg",
-        category: "Electronics", // Add any missing properties
-        createdAt: new Date,  // Or a valid date string
-        updatedAt: new Date,  // Or a valid date string
+        category: "Electronics",
+        createdAt: new Date,
+        updatedAt: new Date,
       };
 
   it("renders correctly", () => {
@@ -85,6 +87,6 @@ describe("ShoppingCartCard Component", () => {
     const removeButton = screen.getByText(/Remove/i);
     fireEvent.click(removeButton);
   
-    expect(mockDispatch).toHaveBeenCalledWith(removeProduct("1")); // ✅ Check mockDispatch instead of removeProduct directly
+    expect(mockDispatch).toHaveBeenCalledWith({ type: "cart/removeProduct", payload: "1" }); // ✅ Check actual dispatched action
   });
 });

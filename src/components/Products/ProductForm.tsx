@@ -20,7 +20,7 @@ const ProductForm = ({
   submitButtonText,
   loadingButtonText
 }: ProductFormProps) => {
-  // Type guard to check if the product has an `id`
+  // check if the product has an `id`
   const isExistingProduct = (product: Product | CreateProductInput): product is Product => {
     return (product as Product).id !== undefined;
   };

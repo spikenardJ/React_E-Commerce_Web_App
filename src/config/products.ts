@@ -12,13 +12,13 @@ export const getProducts = async (): Promise<Product[]> => {
             const data = doc.data();
             return {
                 id: doc.id,
-                title: data.title ?? '',
-                description: data.description ?? '',
+                title: data.title ?? "",
+                description: data.description ?? "",
                 price: data.price ?? 0,
-                category: data.category ?? '',
+                category: data.category ?? "",
                 createdAt: data.createdAt ? data.createdAt.toDate() : null,
                 updatedAt: data.updatedAt ? data.updatedAt.toDate() : null,
-                image: data.image ?? '',
+                image: data.image ?? "",
             };
         });
     } catch (error) {

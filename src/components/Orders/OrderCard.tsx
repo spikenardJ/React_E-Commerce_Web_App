@@ -6,10 +6,10 @@ import { useAuth } from "../../context/auth";
 const OrderCard: React.FC<{ order: Order }> = ({ order }) => {
   const { user } = useAuth();
   const { mutate: deleteOrder } = useDeleteOrder(user?.uid ?? "");
-  const navigate = useNavigate();  // Use useNavigate hook
+  const navigate = useNavigate();  // useNavigate hook
 
   const handleDelete = () => {
-    if (order.id) {  // Ensure that order.id is defined
+    if (order.id) {  
       if (window.confirm("Are you sure you want to delete this order?")) {
         deleteOrder(order.id);  // Delete order
         alert("Order deleted successfully.");
@@ -29,14 +29,14 @@ const OrderCard: React.FC<{ order: Order }> = ({ order }) => {
       {order.createdAt
         ? (order.createdAt as any).seconds
             ? new Date((order.createdAt as any).seconds * 1000).toLocaleString() // Firestore Timestamp
-            : new Date(order.createdAt).toLocaleString() // JavaScript Date
+            : new Date(order.createdAt).toLocaleString() 
         : "N/A"}
       </p>
       <p><strong>Items:</strong> {order.products?.length ?? 0}</p>
       <div id="order-btn-div">
-        <button id="order-details-btn" onClick={() => navigate(`/orders/${order.id}`)}>View Details</button>  {/* Use navigate for details */}
+        <button id="order-details-btn" onClick={() => navigate(`/orders/${order.id}`)}>View Details</button> 
         <br />
-        <button id="remove-btn" onClick={handleDelete}>Delete</button>  {/* Delete button */}
+        <button id="remove-btn" onClick={handleDelete}>Delete</button> 
       </div>
     </div>
   );

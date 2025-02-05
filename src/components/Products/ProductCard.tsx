@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import React from "react";
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
-  const dispatch = useDispatch(); // Use `useDispatch` inside the component
+  const dispatch = useDispatch();
 
   const handleAddProduct = (product: Product) => {
-    dispatch(addProduct({ ...product, quantity: 1 })); // Dispatch the action correctly
+    dispatch(addProduct({ ...product, quantity: 1 }));
     alert("Item added to cart successfully! 🎉");
   };
 

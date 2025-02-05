@@ -1,7 +1,7 @@
 // A gentle Not Found page to redirect user to home page
 
-import { Container, Row, Col, Image, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import errorImage from "../images/error.webp";
 
 const NotFound = () => {
@@ -15,7 +15,7 @@ const NotFound = () => {
                 src={errorImage} 
                 alt="404 Error"
                 fluid
-                style={{ maxWidth: '800px', marginBottom: "80px" }}
+                style={{ maxWidth: "800px", marginBottom: "80px" }}
             />
           </div>
         </Col>

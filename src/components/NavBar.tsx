@@ -53,7 +53,6 @@ const NavBar: React.FC = () => {
       <small>💲 E-Commerce App 💲</small>
     </Navbar.Brand>
 
-    {/* Add this line to enable the hamburger menu */}
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
     <Navbar.Collapse id="basic-navbar-nav">

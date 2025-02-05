@@ -29,7 +29,7 @@ const App = ()=> {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("User state updated:", currentUser); // Debugging line
+      console.log("User state updated: ", currentUser); // Debugging line
       setUser(currentUser);
     });
     return () => unsubscribe();
@@ -50,7 +50,7 @@ const App = ()=> {
                   </div>
                 ) : (
                   <>
-                    <RegisterUser submitFunction={(data) => console.log("Registered:", data)} />
+                    <RegisterUser submitFunction={(data) => console.log("Registered: ", data)} />
 
 
                   </>

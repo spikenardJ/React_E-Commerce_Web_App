@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { db } from '../../config/firebaseConfig';
-import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { useState, useEffect } from "react";
+import { db } from "../../config/firebaseConfig";
+import { collection, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 interface User {
   id?: string;
@@ -19,14 +19,14 @@ const DisplayUserData = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const querySnapshot = await getDocs(collection(db, 'users'));
+        const querySnapshot = await getDocs(collection(db, "users"));
         const dataArray = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         })) as User[];
         setUsers(dataArray);
       } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error("Error fetching users: ", error);
       }
       setLoading(false);
     };
@@ -38,28 +38,28 @@ const DisplayUserData = () => {
   const updateUser = async (userId: string, updatedData: Partial<User>) => {
     try {
       setLoading(true);
-      const userDoc = doc(db, 'users', userId);
+      const userDoc = doc(db, "users", userId);
       await updateDoc(userDoc, updatedData);
-      setMessage('User updated successfully!');
+      setMessage("User updated successfully! 🎉");
       setUsers((prev) =>
         prev.map((user) => (user.id === userId ? { ...user, ...updatedData } : user))
       );
     } catch (error) {
-      console.error('Error updating user:', error);
+      console.error("Error updating user: ", error);
     }
     setLoading(false);
   };
 
   
   const deleteUser = async (userId: string): Promise<void> => {
-    if (!window.confirm('Are you sure you want to delete this user?')) return;
+    if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
       setLoading(true);
-      await deleteDoc(doc(db, 'users', userId));
-      setMessage('User deleted successfully!');
+      await deleteDoc(doc(db, "users", userId));
+      setMessage("User deleted successfully!");
       setUsers((prev) => prev.filter((user) => user.id !== userId));
     } catch (error) {
-      console.error('Error deleting user:', error);
+      console.error("Error deleting user: ", error);
     }
     setLoading(false);
   };
@@ -86,17 +86,17 @@ const DisplayUserData = () => {
         <div
           key={user.id}
           style={{
-            border: '2px solid black',
-            margin: '10px',
-            padding: '10px',
-            borderRadius: '5px',
+            border: "2px solid black",
+            margin: "10px",
+            padding: "10px",
+            borderRadius: "5px",
           }}
         >
           <p>Name: {user.name}</p>
           <p>Age: {user.age}</p>
           <button onClick={() => handleEdit(user)}>Edit</button>
           <button
-            style={{ backgroundColor: 'crimson', color: 'white', marginLeft: '10px' }}
+            style={{ backgroundColor: "crimson", color: "white", marginLeft: "10px" }}
             onClick={() => user.id && deleteUser(user.id)}
           >
             Delete
@@ -104,7 +104,7 @@ const DisplayUserData = () => {
         </div>
       ))}
       {selectedUser && (
-        <div style={{ marginTop: '20px' }}>
+        <div style={{ marginTop: "20px" }}>
           <h3>Edit User</h3>
           <input
             type="text"

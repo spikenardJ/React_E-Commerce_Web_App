@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 export const useAuth = () => {
   const { user, loading } = useContext(AuthContext);
-  return { user, loading }; // Expose loading state too
+  return { user, loading }; 
 };
 
 export default AuthContext;

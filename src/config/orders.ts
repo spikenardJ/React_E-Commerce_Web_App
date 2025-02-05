@@ -21,14 +21,6 @@ export const createOrder = async (order: Order) => {
     }
 };
 
-  
-// export const getOrders = async (userId: string) => {
-//     const snapshot = await getDocs(
-//       query(ordersRef, where("userId", "==", userId))
-//     );
-//     return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as Order[];
-// };
-
 export const getOrders = async (userId: string) => {
     const snapshot = await getDocs(query(ordersRef, where("userId", "==", userId)));
 

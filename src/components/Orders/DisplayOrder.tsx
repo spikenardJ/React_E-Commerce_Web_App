@@ -4,7 +4,6 @@ import { useGetOrder, useDeleteOrder } from "../../hooks/useOrders";
 import { Product } from "../../types/types";
 import { useAuth } from "../../context/auth";
 
-// Component to display individual product details in the order
 const OrderItem: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <div
@@ -43,9 +42,9 @@ const DisplayOrder: React.FC = () => {
   const handleDelete = () => {
     if (order.id) {
       if (window.confirm("Are you sure you want to delete this order?")) {
-        deleteOrder(order.id);  // Calls the delete function
+        deleteOrder(order.id);
         alert("Order deleted successfully.");
-        navigate("/orders");  // Redirect to the orders page after deletion
+        navigate("/orders");
       }
     } else {
       console.error("Order ID is missing");
@@ -86,7 +85,7 @@ const DisplayOrder: React.FC = () => {
             {order.createdAt
                 ? (order.createdAt as any).seconds
                     ? new Date((order.createdAt as any).seconds * 1000).toLocaleString() // Firestore Timestamp
-                    : new Date(order.createdAt).toLocaleString() // JavaScript Date
+                    : new Date(order.createdAt).toLocaleString()
                 : "N/A"}
             </p>
           </div>

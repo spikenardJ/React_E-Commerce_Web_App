@@ -1,12 +1,12 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '../types/types';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Product } from "../types/types";
 
 interface CartState {
     products: Product[];
   }
   
   const initialState: CartState = {
-    products: JSON.parse(sessionStorage.getItem('cart') || '[]'),
+    products: JSON.parse(sessionStorage.getItem("cart") || "[]"),
   };
   
   const cartSlice = createSlice({
@@ -26,7 +26,7 @@ interface CartState {
         } else {
           state.products.push(action.payload);
         }
-        sessionStorage.setItem('cart', JSON.stringify(state.products));
+        sessionStorage.setItem("cart", JSON.stringify(state.products));
       },
 
       removeProduct: (state, action: PayloadAction<string>) => {
@@ -36,12 +36,12 @@ interface CartState {
       
         console.log("Updated products array:", state.products); // Check if state is updating
       
-        sessionStorage.setItem('cart', JSON.stringify(state.products));
+        sessionStorage.setItem("cart", JSON.stringify(state.products));
       },
 
       clearCart: (state) => {
         state.products = [];
-        sessionStorage.removeItem('cart');
+        sessionStorage.removeItem("cart");
       },
     },
   });
