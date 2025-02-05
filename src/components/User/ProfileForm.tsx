@@ -125,7 +125,11 @@ const ProfileForm: React.FC<UserFormProps> = ({ userId, buttonMessage = "Save" }
                 />
               </div>
             </div>
-            <button style={{ marginTop: "30px"}} type="submit" className="btn btn-secondary w-100" disabled={loading}>
+            <button
+              style={{ marginTop: "30px"}}
+              type="submit"
+              className="btn btn-secondary w-100"
+              disabled={loading}>
               {loading ? "Saving..." : buttonMessage}
             </button>
           </form>

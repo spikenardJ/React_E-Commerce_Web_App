@@ -10,7 +10,7 @@ interface CartState {
   };
   
   const cartSlice = createSlice({
-    name: 'cart',
+    name: "cart",
     initialState,
     reducers: {
       addProduct: (state, action: PayloadAction<Product>) => {

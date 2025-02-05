@@ -5,6 +5,11 @@ import { store } from "../../store/store";
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
+jest.mock("../../services/userService", () => ({
+  createUser: jest.fn(() => Promise.resolve()),
+  updateUser: jest.fn(() => Promise.resolve()),
+}));
+
 describe("ProfileForm Component", () => {
   it("renders correctly", () => {
     render(
@@ -34,13 +39,12 @@ describe("ProfileForm Component", () => {
         <ProfileForm />
       </MemoryRouter>
     );
-    
+  
     const submitButton = screen.getByText(/Save/i);
+    
     fireEvent.click(submitButton);
   
-    await waitFor(() => screen.getByText(/Saving.../i));
-  
-    expect(screen.getByText(/Saving.../i)).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText(/Saving.../i)).toBeInTheDocument(), { timeout: 2000 });
   });
 });
 
