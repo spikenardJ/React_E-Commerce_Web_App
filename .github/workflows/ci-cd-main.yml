@@ -25,6 +25,9 @@ jobs:
         run: npm ci
 
       - name: Run tests
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: npm test
 
       - name: Build React app
@@ -50,3 +53,5 @@ jobs:
         run: |
           npm install -g vercel
           vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
+
+

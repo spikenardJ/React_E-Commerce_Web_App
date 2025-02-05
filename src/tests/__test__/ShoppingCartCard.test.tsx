@@ -87,6 +87,6 @@ describe("ShoppingCartCard Component", () => {
     const removeButton = screen.getByText(/Remove/i);
     fireEvent.click(removeButton);
   
-    expect(mockDispatch).toHaveBeenCalledWith({ type: "cart/removeProduct", payload: "1" }); // ✅ Check actual dispatched action
+    expect(mockDispatch).toHaveBeenCalledWith({ type: "cart/removeProduct", payload: "1" });
   });
 });
