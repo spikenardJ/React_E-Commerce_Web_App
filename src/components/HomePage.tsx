@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { useState } from "react";
 import { Container, Col, Row, Image } from "react-bootstrap";
 import ProductCard from "./Products/ProductCard";
-import shoppingImage from "../images/shopping-image.jpg";
+import shoppingImage from "../images/shop.png";
 import { fetchCategories, fetchProducts } from "../api/api";
 import { Product } from "../types/types";
 
