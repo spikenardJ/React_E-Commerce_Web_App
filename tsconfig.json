@@ -24,6 +24,7 @@
     "allowSyntheticDefaultImports": true,
     "types": ["jest", "@testing-library/jest-dom"]
   },
-  "include": ["jest-setup.ts", "src/**/*"]
+  "include": ["jest-setup.ts", "src/**/*"],
+  "exclude": ["node_modules", "tests", "**/*.test.ts", "**/*.spec.ts"]
 }
 
